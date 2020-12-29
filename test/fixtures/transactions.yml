@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wallet: one
+  transactions_money: 1
+  date: 2020-12-29 15:22:46
+  category: MyString
+  note: MyText
+
+two:
+  wallet: two
+  transactions_money: 1
+  date: 2020-12-29 15:22:46
+  category: MyString
+  note: MyText
