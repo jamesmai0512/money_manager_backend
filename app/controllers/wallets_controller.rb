@@ -10,18 +10,29 @@ class WalletsController < ApplicationController
   end
 
   def create
-    wallet_params = params.require(:wallet).permit( :money, :wallet_name)
     wallet = Wallet.new(wallet_params)
-    wallet.save
+    if wallet.valid?
+      head 201
+      wallet.save
+    else 
+      head 422
+    end
   end
 
   def update
     wallet = Wallet.find(params[:id])
-    wallet.update( params.require(:wallet).permit( :money, :wallet_name))
+    wallet.update(wallet_params)
+    head 201
   end
 
   def destroy
     wallet = Wallet.find(params[:id])
     wallet.destroy
+  end
+
+  private
+
+  def wallet_params
+    params.require(:wallet).permit( :money, :wallet_name)
   end
 end

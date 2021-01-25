@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201229082246) do
+ActiveRecord::Schema.define(version: 20210125103148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20201229082246) do
     t.text     "note"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "wallet_name"
     t.index ["wallet_id"], name: "index_transactions_on_wallet_id", using: :btree
   end
 
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 20201229082246) do
     t.string   "wallet_name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "currency"
   end
 
   add_foreign_key "transactions", "wallets"

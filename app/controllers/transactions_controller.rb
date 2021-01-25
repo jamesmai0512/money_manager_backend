@@ -10,18 +10,28 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    transaction_params = params.require(:transaction).permit( :transactions_money, :date, :category, :note)
     transaction = Transaction.new(transaction_params)
-    transaction.save
+    if transaction.valid?
+      head 201
+      transaction.save
+    else 
+      head 422
+    end
   end
 
   def update
     transaction = Transaction.find(params[:id])
-    transaction.update( params.require(:transaction).permit( :transactions_money, :date, :category, :note))
+    transaction.update(transaction_params)
   end
 
   def destroy
     transaction = Transaction.find(params[:id])
     transaction.destroy
+  end
+
+  private
+
+  def transaction_params 
+    params.require(:transaction).permit( :transactions_money, :date, :category, :note)
   end
 end
